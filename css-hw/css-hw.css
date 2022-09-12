@@ -44,6 +44,10 @@ nav{
 .dropdown-content a:hover {
     background-color: rgb(39, 255, 64);
 }
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
 .green {
     background-color: rgb(255, 255, 255);
     border-left: 5px solid rgb(39, 255, 64);
