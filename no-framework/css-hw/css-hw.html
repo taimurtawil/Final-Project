@@ -5,7 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS HW</title>
-    <link rel="stylesheet" href="css-hw.css">
+    
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin:0;
+            padding:0;
+            background-color: rgb(220, 250, 230);
+        }
+        nav{
+            display: flex;
+            background-color: rgb(39, 156, 64);
+        };
+        .dropdown{
+            background-color:rgb(39, 156, 64);
+            display: flex;
+        }
+        .dropbtn{
+            padding: 5px 10px;
+            background-color: rgb(39, 156, 64);
+            border: none;
+            width:80px;
+            text-align: left;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .dropdown:hover .dropbtn{
+            background-color: rgb(39, 196, 64);
+        }
+        .dropdown-content{
+            display: none;
+            position: absolute;
+            width:80px;
+            z-index: 1;
+            background-color: rgb(39, 196, 64);
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 5px 10px;
+            text-decoration: none;
+            display: block;
+            font-size: 13px;
+        }
+        .dropdown:hover .dropdown-content{
+            display: block;
+        } 
+        .dropdown-content a:hover {
+            background-color: rgb(39, 255, 64);
+        }
+        .container{
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .green {
+            background-color: rgb(255, 255, 255);
+            border-left: 5px solid rgb(39, 255, 64);
+            padding: 15px;
+            margin: 25px;
+        }
+        .yellow{
+            background-color: rgb(255, 255, 255);
+            border-left: 5px solid rgb(245, 245, 80);
+            padding: 15px;
+            margin: 25px;
+        }        
+    </style>
 </head>
 <body>
     <nav>
