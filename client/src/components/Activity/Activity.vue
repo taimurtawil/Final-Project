@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ActivityChart from "./ActivityChart.vue";
-import './Activity.scss'
+
 </script>
 
 <template>
