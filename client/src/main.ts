@@ -8,10 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import App from './App.vue'
 import router from './router'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
+
 import './assets/main.scss'
 
-library.add(faEnvelope)
+library.add(faEnvelope, faLock)
 const app = createApp(App)
 
 
