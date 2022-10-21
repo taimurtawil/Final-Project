@@ -1,13 +1,13 @@
 <script setup lang="ts">
-    import session, { login, logout } from '../stores/session';
+    import session, { login, logout, register } from '../stores/session';
 </script>
 
 <template>
     <div class="buttons" v-if="session.user == null">
-        <a class="button is-primary">
+        <a class="button is-primary" @click="register('example@example.com', 'Taimur', 'Tawil', 'Welcome1!')">
             <strong>Sign up</strong>
         </a>
-        <a class="button is-light" @click="login('Moshe', 'Plotkin')">
+        <a class="button is-light" @click="login('example@example.com', 'Welcome1!')">
             Log in
         </a>
     </div>
