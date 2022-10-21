@@ -2,6 +2,7 @@ import { reactive } from "vue";
 import { useMainStore } from "./store";
 import pinia from "./piniainstance";
 import type { User } from "./types";
+import router from "@/router";
 
 const main = useMainStore(pinia);
 
@@ -16,6 +17,7 @@ export function login(email: string, password: string) {
     while(i<currentUsers.length){
         if(email === currentUsers[i].email && password === currentUsers[i].password){
             session.user = currentUsers[i];
+            router.push({name: 'home'})
             return;
         }
     }
@@ -35,21 +37,10 @@ export function register(email:string, firstName: string, lastName: string, pass
 }
 export function logout() {
     session.user = null;
+    router.push({name: 'login'})
 }
 
-// export class User {
-//     public firstName?: string;
-//     public lastName?: string;
-//     public email?: string;
-//     public password?: string;
 
-//     newUser(firstName: string, lastName: string, email: string, password: string){
-//         this.firstName = firstName
-//         this.lastName = lastName
-//         this.email = email
-//         this.password = password
-//     }
-// }
 
 
 

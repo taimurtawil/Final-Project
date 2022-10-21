@@ -34,7 +34,7 @@
                                     Remember me
                                 </label>
                             </div> -->
-                            <p>Don't Have an Account? Register <router-link class="registerLink" to="/register"><a href="#">Here</a></router-link></p>
+                            <p style="font-size: 12px">Don't Have an Account? Register <router-link class="registerLink" to="/register"><a style="text-decoration:underline;" href="#">Here</a></router-link></p>
                             
                             <div class="field">
                                 <button class="button is-success">

@@ -38,6 +38,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.name!== 'login' && to.name!== 'register' && session.user == null) next({ name: 'login' })
+  else if(to.name == 'login' && session.user !== null) next({name: 'home'})
   else next()
 })
 

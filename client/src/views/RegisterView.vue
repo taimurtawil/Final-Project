@@ -101,12 +101,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="field">
-                                <label for="" class="checkbox">
-                                    <input type="checkbox">
-                                    Remember me
-                                </label>
-                            </div>
+                            <p style="font-size: 12px">Have an Account? Log in <router-link class="loginLink" to="/login"><a style="text-decoration:underline;" href="#">Here</a></router-link></p>
                             <div class="field">
                                 <button class="button is-success" @click="confirmRegister(form.firstName, form.lastName, form.email, form.password1, form.password2)">
                                     Sign Up

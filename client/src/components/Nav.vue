@@ -33,7 +33,7 @@
             </router-link>
       
             <router-link class="navbar-item" to="/workout">
-              Workouts
+              Workout
             </router-link>
       
             <div class="navbar-item has-dropdown is-hoverable">
