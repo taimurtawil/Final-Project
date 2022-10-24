@@ -3,7 +3,6 @@
 import session, { addWorkout } from '@/stores/session';
 import type { Workout } from '@/stores/types';
 import { reactive, ref, watch } from 'vue';
-import WorkoutPost from '../components/WorkoutPost.vue';
 
 const form = {
   title: "",
@@ -154,11 +153,6 @@ const addWorkoutTemp = (title:string, time: string, description: string, image?:
         </footer>
       </div>
     </div>
-    <MyComponent
-      v-for="workout in workouts"
-      :workout="workout"
-      
-    />
     
     
   </main>
