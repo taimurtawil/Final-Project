@@ -3,13 +3,14 @@ export type User = {
     lastName: string;
     email: string;
     password: string;
-    workouts?: Workout[];
+    workouts: Workout[];
 };
 
 export type Workout = {
     title: string;
-    image: File;
-    time: number;
+    image?: File|null;
+    time: string;
     description: string;
+    date: string;
 }
 

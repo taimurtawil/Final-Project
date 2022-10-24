@@ -1,7 +1,6 @@
 <script setup lang="ts">
-    import router from '@/router';
     import { reactive } from 'vue';
-    import session, { register, login } from '../stores/session';
+    import { register } from '../stores/session';
 
     const form = reactive({
         firstName: "",
@@ -10,16 +9,7 @@
         password1: "",
         password2: "",
     })
-    function confirmRegister(fname: string, lname: string, email: string, pass1: string, pass2: string){
-        console.log("Here");
-        // if(pass1===pass2){
-        register(fname, lname, email, pass1);
-        login(email, pass1);
-        // }
-        // else{
-        //     alert("Passwords don't Match")
-        // }
-    }
+    
 // function checkPassword(form) {
 //                 password1 = form.password1.value;
 //                 password2 = form.password2.value;
@@ -63,6 +53,7 @@
                                     <span class="icon is-small is-left">
                                         <font-awesome-icon icon="fa-solid fa-circle-user" />
                                     </span>
+                                    
                                 </div>
                             </div>
                             <div class="field">
@@ -72,6 +63,7 @@
                                     <span class="icon is-small is-left">
                                         <font-awesome-icon icon="fa-solid fa-circle-user" />
                                     </span>
+                                    
                                 </div>
                             </div>
                             <div class="field">
@@ -81,6 +73,7 @@
                                     <span class="icon is-small is-left">
                                         <font-awesome-icon icon="fa-solid fa-envelope" />
                                     </span>
+                                    
                                 </div>
                             </div>
                             <div class="field">
@@ -90,6 +83,7 @@
                                     <span class="icon is-small is-left">
                                         <font-awesome-icon icon ="fa-solid fa-lock"/>
                                     </span>
+                                    
                                 </div>
                             </div>
                             <div class="field">
@@ -99,11 +93,12 @@
                                     <span class="icon is-small is-left">
                                         <font-awesome-icon icon ="fa-solid fa-lock"/>
                                     </span>
+                                    
                                 </div>
                             </div>
                             <p style="font-size: 12px">Have an Account? Log in <router-link class="loginLink" to="/login"><a style="text-decoration:underline;" href="#">Here</a></router-link></p>
                             <div class="field">
-                                <button class="button is-success" @click="confirmRegister(form.firstName, form.lastName, form.email, form.password1, form.password2)">
+                                <button class="button is-success" @click=" register(form.email, form.firstName, form.lastName, form.password1)">
                                     Sign Up
                                 </button>
                             </div>
