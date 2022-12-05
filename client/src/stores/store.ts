@@ -1,6 +1,6 @@
 import { useStorage } from "@vueuse/core";
 import { defineStore } from "pinia";
-import type { User } from "./types";
+import type { User, Workout } from "./types";
 
 
 export const useMainStore = defineStore(
@@ -20,6 +20,10 @@ export const useMainStore = defineStore(
         },
         removeUser(index: number) {
             this.users.splice(index, 1)
+        },
+        addWorkout(user: User, workout: Workout){
+            user.workouts.push(workout);
+
         }
 
     },
