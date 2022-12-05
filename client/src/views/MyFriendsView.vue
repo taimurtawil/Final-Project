@@ -68,6 +68,64 @@
             </div>
           </article>
         </div>
+
+    </article>
+    <article class="media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="../assets/taimur.png" alt="shomariimg">
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Taimur Tawil</strong>
+              <br>
+                Just finished playing basketball with some friends. We won 21-18!
+              <br>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSysXC5QcwhsW4hUr_9-8VIDS_p6syjjeRfNWFdngz1uMuLkR86pPpGW9E_8B1xwJ1ZvI&usqp=CAU" alt="basketball"/><br/>
+              <small><a>Like</a> · <a>Reply</a> · 2 hours</small>
+            </p>
+          </div>
+          <article class="media">
+            <figure class="media-left">
+              <p class="image is-48x48">
+                <img src="../assets/alyss.png" alt="alyssimg">
+              </p>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>Alyssia Smith</strong>
+                  <br>
+                    How did you win ur terrible!
+                  <br>
+                  <small><a>Like</a> · <a>Reply</a> · 1 hr</small>
+                </p>
+              </div>
+        
+            </div>
+          </article>
+        </div>
+    </article>
+    <article class="media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            <img src="../assets/alyss.png" alt="shomariimg">
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>Alyssia Smith</strong>
+              <br>
+                Went on a morning run before breakfast!
+              <br>
+              <img src="https://post.healthline.com/wp-content/uploads/2021/06/running-runner-1200x628-facebook.jpg" alt="basketball"/><br/>
+              <small><a>Like</a> · <a>Reply</a> · 4 hours</small>
+            </p>
+          </div>
+        </div>
     </article>
 
     <article class="media">
