@@ -1,140 +1,136 @@
+const data = require("../data/users.json");
+const { connect } = require("./mongo");
+const { ObjectId } = require("mongodb");
 const bcrypt = require('bcrypt');
-const { ObjectId } = require('mongodb');
-const { connect } = require('./mongo');
 
-const COLLECTION_NAME = 'users';
+const DATABASE_NAME = "workout-app";
+const COLLECTION_NAME = "users";
 
-async function collection(){
-    const client = await connect();
-    return client.db('fitnessapp').collection(COLLECTION_NAME);
-}
 
-const list = [];
+const collection = async () => {
+  const client = await connect();
+  return client.db(DATABASE_NAME).collection(COLLECTION_NAME);
+};
 
-const getAll = async()=>{
-    const results = await collection.find().toArray();
-    return results;
-}
+/**
+ *
+ * @returns { User[] } all users
+ */
+const getUsers = async () => {
+  const db = await collection();
+  const data = await db.find().toArray();
+  return data;
+};
 
-const get = async(user_id)=>{
-    const results = await collection.findOne({_id: new ObjectId(user_id)});
-    return results;
-}
+/**
+ *
+ * @param {string} username
+ * @returns {User} user matching username
+ */
+const getUser = async (username) => {
+  const db = await collection();
+  const data = await db.findOne({ username });
+  return data;
+};
 
-const getByHandle = async(handle)=>{
-    const results = await collection.findOne({ handle }).then(x=> ({ ...x, password: undefined }));
-    return results;
-}
+/**
+ *
+ * @param {User} user object
+ * @returns {User} all users
+ */
+const createUser = async (user) => {
+  const db = await collection();
+  const salt = bcrypt.genSaltSync(10)
+  const hash = await bcrypt.hash(user.password, salt)
+  user.password = hash
+  await db.insertOne({
+    username: user.username,
+    password: user.password,
+    workouts: [],
+    following: [],
+  });
+  return getUser(user.username);
+};
 
-const add = async(user)=>{
-    if(!user.firstName){
-         return Promise.reject( { code: 422, msg: "First Name is required" } )
-    }
-    const salt = bcrypt.genSaltSync(10)
-    const hash = await bcrypt.hash(user.password, salt)
-    user.password = hash
-    const user2 = await collection.insertOne(user);
-    user._id = user2.insertedId;
-    return { ...user, password: undefined };
-}
+/**
+ *
+ * @param {string} username
+ */
+const removeUser = async (username) => {
+  const db = await collection();
+  await db.deleteOne({ username });
+};
 
-const update = async(user)=>{
-    const results = await collection.updateOne({_id: new ObjectId(user._id)}, {$set: user});
-    return {...results.value, password: undefined};
+/**
+ *
+ * @param {string} username
+ * @returns {string[]} list of other users that user is following
+ */
+const getFollowing = async (username) => {
+  const user = await getUser(username);
+  return user.following;
+};
 
-}
-const deleteUser = async(user_id)=>{
-    const results = await collection.deleteOne({_id: new ObjectId(user_id)});
-    return results.value;
-}
+/**
+ *
+ * @param {string} username
+ * @param {string} fusername
+ */
+const follow = async (username, fusername) => {
+  const db = await collection();
+  const user = await getUser(username);
+  if (!user.following.includes(fusername)) {
+    await db.updateOne({ username: username }, { $push: { following: fusername } });
+  }
+};
 
-const login = async(handle, password)=>{
-    const user = await collection.findOne({ handle });
+/**
+ *
+ * @param {string} username
+ * @param {string} fusername
+ */
+const unfollow = async (username, fusername) => {
+  const db = await collection();
+  const user = await getUser(username);
+  if (user.following.includes(fusername)) {
+    await db.updateOne({ username: username }, { $pull: { following: fusername } });
+  }
+};
+
+/**
+ *
+ * @param {string} username
+ * @param {string} password
+ * @returns {User} user matching username and password
+ */
+const login = async (username, password) => {
+    const user = await getUser(username);
     if(!user){
-        return Promise.reject( { code: 401, msg: "Invalid Credentials (Handle)" } )
+        return Promise.reject( { code: 401, msg: "Sorry there is no user with that handle" });
     }
     const match = await bcrypt.compare(password, user.password);
     if(!match){
-        return Promise.reject( { code: 401, msg: "Invalid Credentials (Password)" } )
+        return Promise.reject( { code: 401, msg: "Sorry the password is incorrect" });
     }
-    const data =  { ...user, password: undefined };
+    return { username: user.username, password: user.password };
+};
 
-    return { user: data};
+const seed = async () => {
+  const db = await collection();
+  await db.deleteMany();
+  await db.insertMany(data);
 }
 
-const seed = async()=>{
-    for ( const x of list){
-        await add(x);
-    }
-}
+module.exports = {
+  collection,
+  getUsers,
+  getUser,
+  createUser,
+  removeUser,
+  getFollowing,
+  follow,
+  unfollow,
+  login,
+  seed
+};
 
-module.exports = { getAll, get, getByHandle, add, update, delete: deleteUser, login, seed };
-
-// module.exports.Delete = async function Delete(user_id) {
-//     const results = await collection.findOneAndDelete({_id: new ObjectId(user_id) })
-
-//     return results.value;
-// }
-
-// module.exports.Login = async function Login(handle, password){
-//     console.log({ handle, password})
-//     const user = await collection.findOne({ handle });
-//     if(!user){
-//         return Promise.reject( { code: 401, msg: "Sorry there is no user with that handle" });
-//     }
-
-//     const result = await bcrypt.compare(password, user.password)
-        
-//     if( ! result ){
-//         throw { code: 401, msg: "Wrong Password" } ;
-//     }
-    
-//     const data = { ...user, password: undefined };
-    
-//     return { user: data };
-
-    
-// }
-
-// module.exports.Seed = async ()=>{
-//     for (const x of list) {
-//         await module.exports.Add(x)
-//     }
-// }
-// module.exports.GetAll = function GetAll() { return collection.find().toArray() ; }
-
-// module.exports.Get = user_id => collection.findOne({_id: new ObjectId(user_id)}) 
-
-// module.exports.GetByHandle = (handle) => collection.findOne({ handle }).then(x=> ({ ...x, password: undefined }));
-
-// module.exports.Add = async function Add(user) {
-//     if(!user.firstName){
-//          return Promise.reject( { code: 422, msg: "First Name is required" } )
-//     }
-//     const salt = bcrypt.genSaltSync(10)
-//     const hash = await bcrypt.hash(user.password, salt)
-    
-//         console.log({
-//             user, salt: salt, hash
-//         })
-        
-//         user.password = hash;
-
-//         const user2 = await collection.insertOne(user);
-//         user._id = user2.insertedId;
-
-//         return { ...user, password: undefined };
-// }
-
-
-// module.exports.Update = async function Update(user_id, user) {
-
-//     const results = await collection.findOneAndUpdate(
-//         {_id: new ObjectId(user_id) }, 
-//         { $set: user },
-//         { returnDocument: 'after'}
-//     );
-//     console.log({ user_id, results });
-        
-//     return { ...results.value, password: undefined };
-// }

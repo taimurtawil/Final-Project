@@ -1,0 +1,60 @@
+[
+    {
+        "username": "a",
+        "password": "a",
+        "workouts": [
+            {
+                "wid": 1,
+                "name": "Squats",
+                "weight": 30,
+                "reps": 10,
+                "date": "2022-11-28"
+            },
+            {
+                "wid": 2,
+                "name": "Squats",
+                "weight": 30,
+                "reps": 10,
+                "date": "2022-11-28"
+            },
+            {
+                "wid": 3,
+                "name": "Squats",
+                "weight": 30,
+                "reps": 10,
+                "date": "2022-11-28"
+            }
+        ],
+        "following": [
+            "b"
+        ]
+    },
+    {
+        "username": "b",
+        "password": "b",
+        "workouts": [
+            {
+                "wid": 1,
+                "name": "Squats",
+                "weight": 40,
+                "reps": 10,
+                "date": "2022-11-28"
+            },
+            {
+                "wid": 2,
+                "name": "Squats",
+                "weight": 40,
+                "reps": 10,
+                "date": "2022-11-28"
+            },
+            {
+                "wid": 3,
+                "name": "Squats",
+                "weight": 40,
+                "reps": 10,
+                "date": "2022-11-28"
+            }
+        ],
+        "following": []
+    }
+]

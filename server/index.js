@@ -1,8 +1,7 @@
 const express = require('express')
 const app = express()
 
-const productsController = require('./controllers/products');
-const cartController = require('./controllers/cart');
+const usersController = require('./controllers/users')
 
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000;
@@ -15,24 +14,17 @@ app.use((req, res, next) => {
 
 })
 
-// app.use('/', express.static('./client/dist'));
+app.use('/', express.static('./client/dist'));
 
 app.use(express.json());
 
 app
-.get('/', (req, res) => {
-    res.status(200).send('Happy Sweet New Year');
-})
-.get('/error', (req, res) => {
-    sss.PORT();
-})
-// .use('/api/v1/products', productsController)
-// .use('/api/v1/cart', cartController)
+    .use('/api/v1/users', usersController)
 
-// app.get('*', (req, res) => {
-    
-//     res.sendFile('index.html', {root: './client/dist'});
-// })
+
+app.get('*', (req, res) => {
+    res.sendFile('index.html', { root: '../client/dist' });
+})
 
 app.use((err, req, res, next) => {
     console.log(err);
