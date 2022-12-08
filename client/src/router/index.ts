@@ -4,8 +4,9 @@ import WorkoutView from '../views/WorkoutView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import MyFriendsView from '../views/MyFriendsView.vue'
+import WorkoutFormView from '../views/WorkoutFormView.vue'
 
-import session from '@/stores/session'
+import session from '../stores/session'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/feed',
       name: 'feed',
       component: MyFriendsView,
+    },
+    {
+      path: '/addworkout/:id',
+      name: 'WorkoutForm',
+      component: WorkoutFormView,
     }
   ]
 })

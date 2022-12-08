@@ -1,72 +1,55 @@
-import { reactive } from "vue";
-import { useMainStore } from "./store";
-import pinia from "./piniainstance";
-import type { User, Workout } from "./types";
+import { computed, reactive } from "vue";
+import myFetch from "@/services/myFetch";
+
+import type { User} from "./types";
 import router from "@/router";
+import { getWorkouts } from "./workouts";
 
-
-
-
-const main = useMainStore(pinia);
 
 const session = reactive( {
     user: null as User | null,
+    loading: 0,
+    error: null as string | null,
+    messages: [] as Message[],
 });
 
+export default session;
 
-export function login(email: string, password: string) {
-    const currentUsers = main.getAllUsers;
-    let i=0;
-    console.log(main.getAllUsers)
-    while(i<currentUsers.length){
-        if(email == currentUsers[i].email && password == currentUsers[i].password){
-            console.log(currentUsers[i]);
-            session.user = currentUsers[i];
-            router.push({name: 'home'});
-            return;
-        }
+export async function api<T>(url:string , data:any = null, method?: string) {
+    session.loading++;
+    
+    try{
+        const result = await myFetch<T>(url, data, method);
+        return result;
+    }catch(error){
+       console.log(error);
+    } finally{
+        session.loading--;
     }
-    alert('User not Found');
-    console.log(main.getAllUsers)
-    
+    return {} as T;
 }
-export const register = (email:string, firstName: string, lastName: string, password: string )=>{
-    
-    const newUser: User = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        workouts: []
-    };
-    main.addUser(newUser);
-    login(newUser.email, newUser.password);
-    
+
+
+export async function login(username: string, password: string) {
+    console.log(username, password);
+    await api<User>('/users/login', { username, password }, "POST").then((user)=>{
+        if(user.username === username){
+            session.user = user;
+            router.push("/");
+            getWorkouts()
+            console.log(user);
+        }else{
+            session.user = null;
+        }
+    });
 }
 export function logout() {
     session.user = null;
-    router.push({name: 'login'})
+    router.push("/login");
 }
 
-export const addWorkout = (title:string, time: string, description: string, image?:File|null ) =>{
-    const date =new Date().toLocaleDateString();
-    const newWorkOut: Workout = {
-        title: title,
-        image: image,
-        time: time,
-        description: description,
-        date: date
-
-    };
-    
-    if(session.user){
-        debugger;
-        main.addWorkout(session.user, newWorkOut);
-    }
-    console.log(session.user)
+export const isLoading = computed(()=> !!session.loading);
+export interface Message {
+    text: string;
+    type: "danger"|"warnings"|"success" | "info";
 }
-
-
-
-
-export default session;

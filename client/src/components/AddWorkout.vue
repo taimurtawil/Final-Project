@@ -1,0 +1,104 @@
+<script setup lang ="ts">
+import workouts, { addWorkout, workoutList } from '@/stores/workouts';
+import { ref } from 'vue';
+
+
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const id = parseInt(route.params.id as string);
+const workout = workouts.find((workout) => workout.id === id);
+
+
+const name = ref(workout?.name || '');
+const weight = ref(workout?.weight||0);
+const reps = ref(workout?.reps|| 0);
+const date = ref(workout?.date || '');
+
+async function submit() {
+
+    await addWorkout({
+        id: id,
+        name: name.value,
+        weight: weight.value,
+        reps: reps.value,
+        date: date.value,
+    });
+    // router.push('/workouts');
+}
+
+</script>
+<template>
+    <h1 class="title">Add a Workout!</h1>
+    <form @submit.prevent="submit()" class="box">
+            <div class="field">
+                <label for="" class="label">Workout</label>
+                <div class="select">
+                    <select required v-model="name">
+                        <option v-for="workout in workoutList" :key="workout" :value="workout">
+                            {{ workout }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Weight (lbs)</label>
+                <div class="control numOptions">
+                    <input
+                        required
+                        class="input"
+                        type="number"
+                        max="999"
+                        v-model="weight"
+                    />
+                    <button
+                        type="button"
+                        class="button is-success leftBtn"
+                        @click="weight = Math.max(0, weight! - 5)"
+                    >
+                        -
+                    </button>
+                    <button
+                        type="button"
+                        class="button is-success rightBtn"
+                        @click="weight! += 5"
+                    >
+                        +
+                    </button>
+                    
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Reps</label>
+                <div class="control numOptions">
+                    <input required class="input" type="number" max="999" v-model="reps" />
+                    <button
+                        type="button"
+                        class="button is-success leftBtn"
+                        @click="reps = Math.max(0, reps! - 1)"
+                    >
+                        -
+                    </button>
+                    <button
+                        type="button"
+                        class="button is-success rightBtn"
+                        @click="reps! += 1"
+                    >
+                        +
+                    </button>
+                    
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Date</label>
+                <div class="control dateOptions">
+                    <input required class="input" type="date" v-model="date" />
+                </div>
+            </div>
+            <input type="submit" value="Submit" class="button is-link" />
+                        
+
+            
+        </form>
+
+</template>

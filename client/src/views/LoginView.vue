@@ -1,45 +1,49 @@
 <script setup lang="ts">
-
+    import { login } from '@/stores/session';
+    import { reactive } from 'vue';
+  
+    const form = reactive({
+        username: "",
+        password: "",
+    })
+    async function submit() {
+        await login(form.username, form.password);
+        
+    }
 </script>
 
 <template>
   <main>
-    <section class="hero is-primary is-fullheight">
+    <section class="hero is-fullheight">
         <div class="hero-body">
             <div class="container">
                 <div class="columns is-centered">
-                    <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-                        <form action="" class="box">
+                    <div class="column is-5-tablet is-5-desktop is-4-widescreen">
+                        <form class="box" @submit.prevent="submit()">
                             <div class="field">
-                                <label for="" class="label">Email</label>
+                                <label for="" class="label">Username </label>
                                 <div class="control has-icons-left">
-                                    <input type="email"  class="input" required>
+                                    <input type="text" id = "username" class="input" v-model = "form.username" required>
                                     <span class="icon is-small is-left">
                                         <font-awesome-icon icon="fa-solid fa-envelope" />
                                     </span>
+                                    
                                 </div>
                             </div>
                             <div class="field">
                                 <label for="" class="label">Password</label>
                                 <div class="control has-icons-left">
-                                    <input type="password"  class="input" required>
+                                    <input type="password" id = "password" class="input" v-model="form.password" required>
                                     <span class="icon is-small is-left">
                                         <font-awesome-icon icon="fa-solid fa-lock" />
                                     </span>
+                                    
                                 </div>
                             </div>
-                            <!-- <div class="field">
-                                <label for="" class="checkbox">
-                                    <input type="checkbox">
-                                    Remember me
-                                </label>
-                            </div> -->
                             <p style="font-size: 12px">Don't Have an Account? Register <router-link class="registerLink" to="/register"><a style="text-decoration:underline;" href="#">Here</a></router-link></p>
                             
                             <div class="field">
-                                <button class="button is-success">
-                                    Login
-                                </button>
+                                <input type="submit" value="Login" class="button is-success" />
                             </div>
                         </form>
                     </div>

@@ -1,8 +1,8 @@
 ### get all workouts from a user
-GET http://127.0.0.1:3000/api/v1/workouts/a
+GET http://127.0.0.1:3000/api/v1/workouts/127.0.0.1:3003/api/v1/workouts/taimur
 
 ### get one workout from a user
-GET http://127.0.0.1:3000/api/v1/workouts/a/1
+GET http://127.0.0.1:3003/api/v1/workouts/taimur1/0
 
 ### get user by username
 GET http://127.0.0.1:3003/api/v1/users/d
@@ -17,7 +17,7 @@ PATCH http://127.0.0.1:3003/api/v1/users/follow/v/b
 PATCH http://127.0.0.1:3003/api/v1/users/unfollow/v/b
 
 ### remove a workout from a user
-DELETE http://127.0.0.1:3000/api/v1/workouts/a/1
+DELETE http://127.0.0.1:3003/api/v1/workouts/taimur1/0
 
 
 ### get list of users a user is following
@@ -31,8 +31,8 @@ POST http://127.0.0.1:3003/api/v1/users
 Content-Type: application/json
 
 {
-    "username": "c",
-    "password": "c"
+    "username": "taimur1",
+    "password": "tawil1"
 }
 
 ### login
@@ -40,24 +40,23 @@ POST http://127.0.0.1:3003/api/v1/users/login
 Content-Type: application/json
 
 {
-    "username": "d",
-    "password": "d"
+    "username": "taimur",
+    "password": "tawil"
 }
 
 ### add workout
-POST http://127.0.0.1:3003/api/v1/workouts/a
+POST http://127.0.0.1:3003/api/v1/workouts/taimur1
 Content-Type: application/json
 
 {
-    "wid": 5,
-    "name": "not a test anymore >:)",
+    "id": 2,
+    "name": "bench press",
     "weight": 30,
     "reps": 10,
     "date": "2020-01-01"
 }
-
-### remove a workout
-DELETE http://127.0.0.1:3000/api/v1/workouts/a/1
+### remove a workoutd
+DELETE http://127.0.0.1:3003/api/v1/workouts/taimur/2
 
 ### seed database
 POST http://127.0.0.1:3000/api/v1/users/seed

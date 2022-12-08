@@ -1,15 +1,16 @@
 <script setup lang="ts">
+    import { register } from '@/stores/users';
     import { reactive } from 'vue';
-    import { register } from '../stores/session';
 
     const form = reactive({
-        firstName: "",
-        lastName: "",
-        email: "",
+        username: "",
         password1: "",
         password2: "",
     })
-    
+    async function submit() {
+        
+        await register(form.username, form.password1);
+    }
 // function checkPassword(form) {
 //                 password1 = form.password1.value;
 //                 password2 = form.password2.value;
@@ -45,31 +46,11 @@
             <div class="container">
                 <div class="columns is-centered">
                     <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-                        <form action="" class="box">
+                        <form  @submit.prevent="submit()" class="box">
                             <div class="field">
-                                <label for="firstName" class="label">First Name</label>
+                                <label for="username" class="label">Username</label>
                                 <div class="control has-icons-left">
-                                    <input type="text" id = "firstName" placeholder="First Name" v-model="form.firstName" class="input" required>
-                                    <span class="icon is-small is-left">
-                                        <font-awesome-icon icon="fa-solid fa-circle-user" />
-                                    </span>
-                                    
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label for="lastName" class="label">Last Name</label>
-                                <div class="control has-icons-left">
-                                    <input type="text" id="lastName" placeholder="Last Name" v-model="form.lastName" class="input" required>
-                                    <span class="icon is-small is-left">
-                                        <font-awesome-icon icon="fa-solid fa-circle-user" />
-                                    </span>
-                                    
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label for="email" class="label">Email</label>
-                                <div class="control has-icons-left">
-                                    <input type="email" id="email" placeholder="Email" v-model="form.email" class="input" required>
+                                    <input type="text" id="username" placeholder="Username" v-model="form.username" class="input" required>
                                     <span class="icon is-small is-left">
                                         <font-awesome-icon icon="fa-solid fa-envelope" />
                                     </span>
@@ -98,9 +79,7 @@
                             </div>
                             <p style="font-size: 12px">Have an Account? Log in <router-link class="loginLink" to="/login"><a style="text-decoration:underline;" href="#">Here</a></router-link></p>
                             <div class="field">
-                                <button class="button is-success" @click=" register(form.email, form.firstName, form.lastName, form.password1)">
-                                    Sign Up
-                                </button>
+                                <input type="submit" value="Register" class="button is-success" />
                             </div>
                         </form>
                     </div>

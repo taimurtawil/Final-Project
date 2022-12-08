@@ -45,11 +45,11 @@
               </a>
       
               <div class="navbar-dropdown">
-                <router-link class="navbar-item" to="/about">
-                  About
+                <router-link class="navbar-item" to="/addworkout">
+                  Add Workout
                 </router-link>
                 <a class="navbar-item">
-                  Jobs
+                  
                 </a>
                 <a class="navbar-item">
                   Contact

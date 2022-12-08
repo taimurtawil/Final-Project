@@ -1,16 +1,17 @@
+
+
 export type User = {
-    firstName: string;
-    lastName: string;
-    email: string;
+    // firstName: string;
+    // lastName: string;
+    username: string;
     password: string;
-    workouts: Workout[];
+    // workouts: Workout[];
 };
 
 export type Workout = {
-    title: string;
-    image?: File|null;
-    time: string;
-    description: string;
+    id: number;
+    name: string;//TODO: make this title
+    weight: number;
+    reps: number;
     date: string;
 }
-
