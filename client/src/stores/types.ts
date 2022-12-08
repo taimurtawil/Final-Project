@@ -9,7 +9,7 @@ export type User = {
 };
 
 export type Workout = {
-    id: number;
+    id: number | null;
     name: string;//TODO: make this title
     weight: number;
     reps: number;

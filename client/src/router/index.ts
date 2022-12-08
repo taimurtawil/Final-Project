@@ -42,7 +42,7 @@ const router = createRouter({
       component: MyFriendsView,
     },
     {
-      path: '/addworkout/:id',
+      path: '/addworkout',
       name: 'WorkoutForm',
       component: WorkoutFormView,
     }

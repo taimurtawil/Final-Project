@@ -46,12 +46,12 @@ const getWorkouts = async (username) => {
 /**
  *
  * @param {string} username
- * @param {number} wid
+ * @param {number} id
  * @returns {object} single workout from a user
  */
-const getWorkout = async (username, wid) => {
+const getWorkout = async (username, id) => {
   const user = await getUser(username);
-  return user.workouts.find((workout) => workout.wid === wid);
+  return user.workouts.find((workout) => workout.id === id);
 }
 
 /**
@@ -59,37 +59,34 @@ const getWorkout = async (username, wid) => {
  * @param {string} username
  * @param {Workout} workout object
  */
-const addWorkout = async (username, newWorkout) => {
+const createWorkout = async (username, newWorkout) => {
   const db = await collection();
   const user = await getUser(username);
-  const workout = user.workouts.find((workout) => workout.wid === newWorkout.wid);
-  if (workout) {
-    await db.updateOne(
-      { username: username, workouts: { $elemMatch: { wid: newWorkout.wid } } },
-      { $set: { "workouts.$": newWorkout } });
-  } else {
-    await db.updateOne({ username: username, },
-      { $push: { workouts: newWorkout } });
-  }
+  const workouts = user.workouts;
+  const newWorkoutId = workouts.length > 0 ? workouts.length : 0;
+  newWorkout.id = newWorkoutId;
+  await db.updateOne({ username: username, },
+    { $push: { workouts: newWorkout } });
 }
 
 /**
  *
  * @param {string} username
- * @param {number} wid
+ * @param {number} id
  */
-const removeWorkout = async (username, wid) => {
+const removeWorkout = async (username, id) => {
   const db = await collection();
   await db.updateOne(
     { username: username },
-    { $pull: { workouts: { wid: wid } } }
+    { $pull: { workouts: { id: id } } }
   )
 }
+
 
 
 module.exports = {
   getWorkouts,
   getWorkout,
-  addWorkout,
+  createWorkout,
   removeWorkout,
 };

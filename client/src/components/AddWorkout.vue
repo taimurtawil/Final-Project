@@ -1,5 +1,5 @@
 <script setup lang ="ts">
-import workouts, { addWorkout, workoutList } from '@/stores/workouts';
+import  { addWorkout, workoutList } from '@/stores/workouts';
 import { ref } from 'vue';
 
 
@@ -7,18 +7,17 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const id = parseInt(route.params.id as string);
-const workout = workouts.find((workout) => workout.id === id);
 
 
-const name = ref(workout?.name || '');
-const weight = ref(workout?.weight||0);
-const reps = ref(workout?.reps|| 0);
-const date = ref(workout?.date || '');
+const name = ref('');
+const weight = ref(0);
+const reps = ref(0);
+const date = ref('');
 
 async function submit() {
 
     await addWorkout({
-        id: id,
+        id: null,
         name: name.value,
         weight: weight.value,
         reps: reps.value,
