@@ -25,7 +25,7 @@
                                 <div class="control has-icons-left">
                                     <input type="text" id = "username" class="input" v-model = "form.username" required>
                                     <span class="icon is-small is-left">
-                                        <font-awesome-icon icon="fa-solid fa-envelope" />
+                                        <font-awesome-icon icon="fa-solid fa-circle-user" />
                                     </span>
                                     
                                 </div>
@@ -43,7 +43,7 @@
                             <p style="font-size: 12px">Don't Have an Account? Register <router-link class="registerLink" to="/register"><a style="text-decoration:underline;" href="#">Here</a></router-link></p>
                             
                             <div class="field">
-                                <input type="submit" value="Login" class="button is-success" />
+                                <input type="submit" value="Login" class="button is-warning is-normal" />
                             </div>
                         </form>
                     </div>

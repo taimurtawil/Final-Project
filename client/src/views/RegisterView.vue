@@ -41,7 +41,7 @@
 
 <template>
   <main>
-    <section class="hero is-primary is-fullheight">
+    <section class="hero is-fullheight">
         <div class="hero-body">
             <div class="container">
                 <div class="columns is-centered">
@@ -52,7 +52,7 @@
                                 <div class="control has-icons-left">
                                     <input type="text" id="username" placeholder="Username" v-model="form.username" class="input" required>
                                     <span class="icon is-small is-left">
-                                        <font-awesome-icon icon="fa-solid fa-envelope" />
+                                        <font-awesome-icon icon="fa-solid fa-circle-user" />
                                     </span>
                                     
                                 </div>
@@ -79,7 +79,7 @@
                             </div>
                             <p style="font-size: 12px">Have an Account? Log in <router-link class="loginLink" to="/login"><a style="text-decoration:underline;" href="#">Here</a></router-link></p>
                             <div class="field">
-                                <input type="submit" value="Register" class="button is-success" />
+                                <input type="submit" value="Register" class="button is-warning is-normal" />
                             </div>
                         </form>
                     </div>
