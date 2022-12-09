@@ -24,6 +24,7 @@ import NavVue from './components/Nav.vue';
   background: #022C43;
   overflow: hidden;
   display: block;
+  height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

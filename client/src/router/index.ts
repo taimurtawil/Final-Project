@@ -5,6 +5,8 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import MyFriendsView from '../views/MyFriendsView.vue'
 import WorkoutFormView from '../views/WorkoutFormView.vue'
+import WeightTrackerView from '../views/WeightTrackerView.vue'
+
 
 import session from '../stores/session'
 
@@ -45,6 +47,11 @@ const router = createRouter({
       path: '/addworkout',
       name: 'WorkoutForm',
       component: WorkoutFormView,
+    },
+    {
+      path: '/weighttracker',
+      name: 'weighttracker',
+      component: WeightTrackerView,
     }
   ]
 })

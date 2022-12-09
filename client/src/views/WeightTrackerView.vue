@@ -9,7 +9,7 @@ import session from "../stores/session";
       
     </div>
     <div class="wrapper" v-else>
-      
+        <Activity/>
     </div>
   </main>
 </template>

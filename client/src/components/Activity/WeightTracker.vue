@@ -48,8 +48,8 @@ watch(weights, newWeights =>{
                         data: ws
                             .sort((a,b) => a.date - b.date)
                             .map(w => w.weight),
-                        backgroundColor: 'rgba(255, 105, 180, 0.2)',
-                        borderColor: 'rgba(255, 105, 180, 1)',
+                        backgroundColor: 'rgba(255, 215, 0, 0.2)',
+                        borderColor: 'rgba(255, 215, 0, 1)',
                         borderWidth: 1,
                         fill: true,
                     }
@@ -125,13 +125,14 @@ main {
 	padding: 1.5rem;
 }
 h1 {
+	color: #fff;
 	font-size: 2em;
 	text-align: center;
 	margin-bottom: 2rem;
 }
 h2 {
 	margin-bottom: 1rem;
-	color: #888;
+	color: #fff;
 	font-weight: 400;
 }
 .current {
@@ -146,7 +147,7 @@ h2 {
 	background-color: white;
 	border-radius: 999px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	border: 5px solid hwb(330 41% 0%);
+	border: 5px solid #ffd700;
 	
 	margin: 0 auto 2rem;
 }
@@ -170,7 +171,7 @@ form {
 }
 form:focus-within,
 form:hover {
-	border-color: hotpink;
+	border-color: #ffd700;
 	border-width: 2px;
 }
 form input[type="number"] {
@@ -187,7 +188,7 @@ form input[type="submit"] {
 	outline: none;
 	border: none;
 	cursor: pointer;
-	background-color: hotpink;
+	background-color: #ffd700;
 	padding: 0.5rem 1rem;
 	color: white;
 	font-size: 1.25rem;
@@ -197,8 +198,8 @@ form input[type="submit"] {
 }
 form input[type="submit"]:hover {
 	background-color: white;
-	color: hotpink;
-	border-left-color: hotpink;
+	color: #ffd700;
+	border-left-color: #ffd700;
 }
 .canvas-box {
 	width: 100%;
