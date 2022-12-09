@@ -1,11 +1,9 @@
-import { reactive, watch } from "vue";
+
 import session, { api } from "./session";
 
-const followers = reactive([] as string[]);
 
-export default followers;
 
-export function getFollowers(){
+export function getFollowing(){
     if(session.user){
         api<string[]>(`users/following/${session.user?.username}`).then((data)=>{
             followers.splice(0, followers.length, ...(data as string[]));
