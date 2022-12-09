@@ -5,12 +5,29 @@ import NavVue from './components/Nav.vue';
 </script>
 
 <template>
-  <header>
-    <NavVue />
-  </header>
+  <body class="body">
+    <header>
+      <NavVue />
+    </header>
 
-  <div class = "container">
-    <RouterView />
-  </div>
+    <div class = "container">
+      <RouterView />
+    </div>
+  </body>
 </template>
+<style>
+
+.body {
+  margin: 0;
+  font-family: 300 11px/1.4 'Helvetica Neue', 'sans-serif';
+  color: #444;
+  background: #022C43;
+  overflow: hidden;
+  display: block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+</style>
 
