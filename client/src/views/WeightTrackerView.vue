@@ -5,11 +5,12 @@ import session from "../stores/session";
 
 <template>
   <main>
-    <div v-if="session.user == null">
-      
-    </div>
-    <div class="wrapper" v-else>
-        <Activity/>
-    </div>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+          <div class="container">
+              <Activity/>
+          </div>
+        </div>
+    </section>
   </main>
 </template>

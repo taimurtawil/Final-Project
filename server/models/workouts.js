@@ -1,36 +1,7 @@
-// const { collection, getUser } = require("./users");
-// const { ObjectId } = require("mongodb");
 
-
-// const getWorkouts = async (username) => {
-//     const user = await getUser(username);
-//     return user.workouts;
-// };
-
-// const getWorkout = async (username, id) => {
-//     const user = await getUser(username);
-//     return user.workouts.find((workout) => workout.id === id);
-// }
-
-// const createWorkout = async (username, newWorkout) => {
-//     const db = await collection();
-//     await db.updateOne({ username: username }, { $push: { workouts: newWorkout } });
-// }
-
-// const removeWorkout = async (username, id) => {
-//     const db = await collection();
-//     await db.updateOne({ username: username }, { $pull: { workouts: { _id: newObjectId(id) } } });
-// }
-
-// module.exports = {
-//     getWorkouts,
-//     getWorkout,
-//     createWorkout,
-//     removeWorkout,
-// };
 const data = require("../data/users.json");
 const { connect } = require("./mongo");
-// import function collection() from users.js
+
 const { collection, getUser } = require("./users");
 
 /**

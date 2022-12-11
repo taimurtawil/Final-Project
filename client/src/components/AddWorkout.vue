@@ -1,4 +1,5 @@
 <script setup lang ="ts">
+import router from '@/router';
 import  { addWorkout, workoutList } from '@/stores/workouts';
 import { ref } from 'vue';
 
@@ -23,12 +24,11 @@ async function submit() {
         reps: reps.value,
         date: date.value,
     });
-    // router.push('/workouts');
+    router.push('/workout');
 }
 
 </script>
 <template>
-    <h1 class="title">Add a Workout!</h1>
     <form @submit.prevent="submit()" class="box">
             <div class="field">
                 <label for="" class="label">Workout</label>
@@ -101,3 +101,25 @@ async function submit() {
         </form>
 
 </template>
+<style>
+.numOptions input {
+  width: 10rem;
+  text-align: center;
+  border-radius: 0 !important;
+}
+/* +/- buttons */
+.button {
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+}
+.leftBtn {
+  border-radius: 5px 0 0 5px;
+}
+.rightBtn {
+  border-radius: 0 5px 5px 0;
+}
+.dateOptions input {
+  width: 10rem;
+}
+</style>

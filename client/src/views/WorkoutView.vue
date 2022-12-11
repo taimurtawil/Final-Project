@@ -14,21 +14,41 @@ getWorkouts().then((data) => {
 
 <template>
     <main>
-      <div class="control"></div>
-      <div v-if="workouts.length">
-        <h1>Your Workouts</h1>
-        <WorkoutVue v-for="workout in workouts" :workout="workout" />
-      </div> 
-      <div v-else>
-        <h1>You have no workouts</h1>
-      </div>
-      <div class="buttons is-flex is-flex-direction-row">
-        <RouterLink :to="`/addworkout`">
-          <button class="button is-primary">Add Workout</button>
-        </RouterLink>
-      </div>
-      
+      <section class="hero is-fullheight">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">Your Workouts</h1>
+            <div class="buttons is-flex is-flex-direction-row">
+              <RouterLink :to="`/addworkout`">
+                <button class="button is-primary">Add Workout</button>
+              </RouterLink>
+            </div>
+            <div class ="post" v-if="workouts.length">
+              
+              <WorkoutVue v-for="workout in workouts" :workout="workout" />
+            </div> 
+            <div v-else>
+              <h1>You have no workouts</h1>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+        
+        
       
     </main>
 </template>
+<style scoped>
+  
+  .container{
+    min-height: 100%;
+    
+  }
+  .post{
+    width: 100%;
+  }
+    
+  
+</style>
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
+  import { logout } from '@/stores/session';
   import { ref } from 'vue';
   import { RouterLink } from 'vue-router';
   let isActive = ref(false);
-  
   
 
 </script>
@@ -19,9 +19,9 @@
       <router-link exact="true" activeclassname="active" className="weight-tracker-link" to="/weighttracker">
         <font-awesome-icon icon="fa-solid fa-weight-scale"/>
       </router-link>
-      <router-link exact="true" activeclassname="active" className="logout-link" to="/logout">
+      <button activeclassname="active" className="logout-link" @click="logout()"> 
         <font-awesome-icon icon="fa-solid fa-right-from-bracket"/>
-      </router-link>
+      </button>
     </nav>
 
   </div>
@@ -105,10 +105,14 @@
             }
         }
     
-        a.logout-link {
-            &:after {
-            content: 'Logout';
-            }
+        button.logout-link {
+          background: none;
+          color: inherit;
+          border: none;
+          padding: 0;
+          font: inherit;
+          cursor: pointer;
+          outline: inherit;
         }
     
         a.active {

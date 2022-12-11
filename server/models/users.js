@@ -1,6 +1,6 @@
 const data = require("../data/users.json");
 const { connect } = require("./mongo");
-const { ObjectId } = require("mongodb");
+
 const bcrypt = require('bcrypt');
 
 const DATABASE_NAME = "workout-app";

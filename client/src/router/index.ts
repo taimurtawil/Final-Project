@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import WorkoutView from '../views/WorkoutView.vue'
-import LoginView from '../views/LoginView.vue'
-import RegisterView from '../views/RegisterView.vue'
-import MyFriendsView from '../views/MyFriendsView.vue'
-import WorkoutFormView from '../views/WorkoutFormView.vue'
-import WeightTrackerView from '../views/WeightTrackerView.vue'
+import WorkoutView from '../views/WorkoutView.vue';
+import LoginView from '../views/LoginView.vue';
+import RegisterView from '../views/RegisterView.vue';
+
+import WorkoutFormView from '../views/WorkoutFormView.vue';
+import WeightTrackerView from '../views/WeightTrackerView.vue';
+import AddFriendView from '../views/AddFriendView.vue';
 
 
 import session from '../stores/session'
@@ -39,11 +40,6 @@ const router = createRouter({
     
     },
     {
-      path: '/feed',
-      name: 'feed',
-      component: MyFriendsView,
-    },
-    {
       path: '/addworkout',
       name: 'WorkoutForm',
       component: WorkoutFormView,
@@ -52,6 +48,11 @@ const router = createRouter({
       path: '/weighttracker',
       name: 'weighttracker',
       component: WeightTrackerView,
+    },
+    {
+      path: '/addfriend',
+      name: 'addfriend',
+      component: AddFriendView,
     }
   ]
 })

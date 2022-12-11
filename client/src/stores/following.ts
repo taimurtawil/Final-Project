@@ -1,32 +1,31 @@
 
+import { reactive } from "vue";
 import session, { api } from "./session";
+import { getUserWorkouts } from "./workouts";
 
 
 
-export function getFollowing(){
-    if(session.user){
-        api<string[]>(`users/following/${session.user?.username}`).then((data)=>{
-            followers.splice(0, followers.length, ...(data as string[]));
-        });
-    }else{
-        followers.splice(0, followers.length);
-    }
+export async function getFollowing(){
+    return await api<string[]>(`/users/following/${session.user?.username}`);
 
 }
 // watch(()=>session.user, getFollowers);
 
 export async function follow(friendUsername: string){
-    if(session.user){
-        api(`users/follow/${session.user.username}/${friendUsername}`, null, "PATCH").then(()=>{
-            followers.push(friendUsername);
-        });
-    }
+    await api(`/users/follow/${session.user?.username}/${friendUsername}`, null, "PATCH");
 }
 
 export async function unfollow(friendUsername: string){
-    if(session.user){
-        api(`users/unfollow/${session.user.username}/${friendUsername}`, null, "PATCH").then(()=>{
-            followers.splice(followers.indexOf(friendUsername), 1);
-        });
-    }
+    await api(`/users/unfollow/${session.user?.username}/${friendUsername}`, null, "PATCH");
 }
+export async function getFollowersPosts(){
+    const following = await getFollowing();
+    const usersWorkouts = reactive( new Map() )
+    for (const element of following) {
+        const workouts = await getUserWorkouts(element);
+        usersWorkouts.set(element, workouts);
+    }
+    return usersWorkouts;
+
+}
+    

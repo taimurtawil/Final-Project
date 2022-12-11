@@ -1,5 +1,5 @@
 ### get all workouts from a user
-GET http://127.0.0.1:3000/api/v1/workouts/127.0.0.1:3003/api/v1/workouts/taimur
+GET http://127.0.0.1:3003/api/v1/workouts/alyssia1
 
 ### get one workout from a user
 GET http://127.0.0.1:3003/api/v1/workouts/taimur1/0
@@ -11,7 +11,7 @@ GET http://127.0.0.1:3003/api/v1/users/d
 GET http://127.0.0.1:3003/api/v1/users
 
 ### follow a user
-PATCH http://127.0.0.1:3003/api/v1/users/follow/v/b
+PATCH http://127.0.0.1:3003/api/v1/users/follow/taimur1/alyssia1
 
 ### unfollow a user
 PATCH http://127.0.0.1:3003/api/v1/users/unfollow/v/b
@@ -21,7 +21,7 @@ DELETE http://127.0.0.1:3003/api/v1/workouts/taimur1/0
 
 
 ### get list of users a user is following
-GET http://127.0.0.1:3003/api/v1/users/following/v
+GET http://127.0.0.1:3003/api/v1/users/following/taimur1
 
 ### remove user
 DELETE http://127.0.0.1:3003/api/v1/users/c
@@ -31,8 +31,8 @@ POST http://127.0.0.1:3003/api/v1/users
 Content-Type: application/json
 
 {
-    "username": "taimur1",
-    "password": "tawil1"
+    "username": "shomari1",
+    "password": "thompson1"
 }
 
 ### login
@@ -45,12 +45,12 @@ Content-Type: application/json
 }
 
 ### add workout
-POST http://127.0.0.1:3003/api/v1/workouts/taimur1
+POST http://127.0.0.1:3003/api/v1/workouts/alyssia1
 Content-Type: application/json
 
 {
     
-    "name": "bench press",
+    "name": "crunches",
     "weight": 30,
     "reps": 10,
     "date": "2020-01-01"

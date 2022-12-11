@@ -36,7 +36,7 @@ export async function login(username: string, password: string) {
         if(user.username === username){
             session.user = user;
             router.push("/");
-            console.log(user);
+            
         }else{
             session.user = null;
         }

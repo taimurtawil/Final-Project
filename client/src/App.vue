@@ -11,7 +11,9 @@ import NavVue from './components/Nav.vue';
     </header>
 
     <div class = "container">
-      <RouterView />
+      <Suspense>
+        <RouterView />
+      </Suspense>
     </div>
   </body>
 </template>
