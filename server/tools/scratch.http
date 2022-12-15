@@ -4,8 +4,8 @@ GET http://127.0.0.1:3003/api/v1/workouts/alyssia1
 ### get one workout from a user
 GET http://127.0.0.1:3003/api/v1/workouts/taimur1/0
 
-### get user by username
-GET http://127.0.0.1:3003/api/v1/users/d
+### get list of users from search
+GET http://127.0.0.1:3003/api/v1/users/find/a
 
 ### get all users
 GET http://127.0.0.1:3003/api/v1/users
@@ -60,3 +60,5 @@ DELETE http://127.0.0.1:3003/api/v1/workouts/taimur/2
 
 ### seed database
 POST http://127.0.0.1:3000/api/v1/users/seed
+
+GET http://127.0.0.1:3003/api/v1/users/find/a

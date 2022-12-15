@@ -21,7 +21,9 @@ export async function register(username: string, password: string){
 
     });
 }
-
+export async function searchUsers(username:string): Promise<User[]>{
+    return await api<User[]>(`/users/find/${username}`, "GET");
+}
 // export async function deleteUser(username: string){
 //     if(session.user){
 //         await api(`/users/delete/${username}`, null, "DELETE").then(()=>{

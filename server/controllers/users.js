@@ -14,6 +14,16 @@ app
       .then((data) => res.status(200).send(data))
       .catch(next);
   })
+  .get("/find/:username", (req, res, next) => {
+    users.findUsers(req.params.username)
+      .then((data) => {
+        if(data){
+          res.status(200).send(data)
+        }else{
+          res.status(404).send("Not working")
+        }
+      })
+  })
   .get("/:username", (req, res, next) => {
     users.getUser(req.params.username)
       .then((data) => {

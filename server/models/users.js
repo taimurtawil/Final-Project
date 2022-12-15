@@ -21,6 +21,12 @@ const getUsers = async () => {
   const data = await db.find().toArray();
   return data;
 };
+const findUsers = async (username) => {
+  const db = await collection();
+  const data = await db.find({username: {$regex: username, $options: 'i'}}).toArray();
+  return data
+  
+}
 
 /**
  *
@@ -97,6 +103,7 @@ const unfollow = async (username, fusername) => {
   }
 };
 
+
 /**
  *
  * @param {string} username
@@ -115,6 +122,7 @@ const login = async (username, password) => {
     return { username: user.username, password: user.password };
 };
 
+
 const seed = async () => {
   const db = await collection();
   await db.deleteMany();
@@ -131,6 +139,7 @@ module.exports = {
   follow,
   unfollow,
   login,
-  seed
+  seed,
+  findUsers
 };
 
